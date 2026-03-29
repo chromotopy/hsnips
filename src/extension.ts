@@ -176,6 +176,14 @@ export function activate(context: vscode.ExtensionContext) {
         }
     }
 
+	function snippetMatchesEnvironment(snippet: HSnippet, editor: vscode.TextEditor) {
+		const inMath = isMathEnvironment(editor);
+		if (snippet.math && snippet.nonMath) return false;
+		if (snippet.math) return inMath;
+		if (snippet.nonMath) return !inMath;
+		return true;
+	}
+
     // Forward all document changes so that the active snippet can update its related blocks.
     context.subscriptions.push(
         vscode.workspace.onDidChangeTextDocument((e) => {
