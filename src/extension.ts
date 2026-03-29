@@ -211,11 +211,11 @@ export function activate(context: vscode.ExtensionContext) {
             // using !isArray, and then expand the snippet.
             if (completions && !Array.isArray(completions)) {
                 let editor = vscode.window.activeTextEditor;
-                if (editor && e.document == editor.document &&
-                    (!completions.snippet.math || isMathEnvironment(editor))) {
-                    expandSnippet(completions, editor);
-                    return;
-                }
+               if (editor && e.document == editor.document &&
+				   snippetMatchesEnvironment(completions.snippet, editor)) {
+				   expandSnippet(completions, editor);
+				   return;
+			   }
             }
         })
     );
