@@ -250,13 +250,9 @@ export function activate(context: vscode.ExtensionContext) {
                 let completions = getCompletions(document, position, snippets);
                 if (completions && Array.isArray(completions)) {
                     let editor = vscode.window.activeTextEditor;
-                    return completions.filter((c) => {
-                        if (editor && (!c.snippet.math || isMathEnvironment(editor))) {
-                            return true
-                        } else {
-                            return false
-                        }
-                    }).map((c) => c.toCompletionItem());
+                    return completions
+						.filter((c) => editor && snippetMatchesEnvironment(c.snippet, editor))
+						.map((c) => c.toCompletionItem());	
                 }
             },
         },
