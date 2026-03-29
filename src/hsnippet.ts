@@ -44,6 +44,7 @@ export class HSnippet {
     if (header.flags.includes('w')) this.wordboundary = true;
     if (header.flags.includes('b')) this.beginningofline = true;
     if (header.flags.includes('m')) this.math = true;
+    if (header.flags.includes('n')) this.nonMath = true;
     if (header.flags.includes('h')) this.hidden = true;
   }
 }
