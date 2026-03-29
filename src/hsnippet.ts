@@ -22,6 +22,7 @@ export class HSnippet {
   wordboundary = false;
   beginningofline = false;
   math = false;
+  nonMath = false;
   hidden = false;
 
   constructor(header: IHSnippetHeader, generator: GeneratorFunction, placeholders: number) {
